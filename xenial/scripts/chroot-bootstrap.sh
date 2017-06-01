@@ -50,4 +50,5 @@ update-grub
 } >> /etc/network/interfaces
 
 # Install standard packages
-DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-standard cloud-init
+DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-standard
+DEBIAN_FRONTEND=noninteractive apt-get install -y cloud-init=0.7.7~bzr1212-0ubuntu1
