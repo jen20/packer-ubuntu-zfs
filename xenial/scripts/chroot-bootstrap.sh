@@ -11,8 +11,7 @@ echo 'grub-pc grub-pc/install_devices select' | debconf-set-selections
 
 # Install various packages needed for a booting system
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	linux-image-generic \
-	linux-headers-generic \
+	linux-aws \
 	grub-pc \
 	zfs-zed \
 	zfsutils-linux \

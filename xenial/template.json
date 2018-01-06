@@ -49,6 +49,7 @@
 		"ami_name": "ubuntu-xenial-16.04-amd64-zfs-server-{{ user `buildtime` }}",
 		"ami_description": "Ubuntu Xenial (16.04) with ZFS Root Filesystem",
 		"ami_virtualization_type": "hvm",
+		"ena_support": true,
 		"ami_regions": [
 			"ap-south-1",
 			"ap-northeast-1",

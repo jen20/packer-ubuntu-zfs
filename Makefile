@@ -2,6 +2,7 @@ default: help
 
 .PHONY: xenial
 xenial: ## Build AMI for Ubuntu 16.04 ("Xenial") LTS
+	@cd xenial && packer validate template.json
 	@cd xenial && packer build template.json
 
 .PHONY: help
