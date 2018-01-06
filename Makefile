@@ -4,10 +4,6 @@ default: help
 xenial: ## Build AMI for Ubuntu 16.04 ("Xenial") LTS
 	@cd xenial && packer build template.json
 
-.PHONY: yakkety
-yakkety: ## Build AMI for Ubuntu 16.10 ("Yakkety")
-	@cd yakkety && packer build template.json
-
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
