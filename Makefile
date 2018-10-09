@@ -5,6 +5,11 @@ xenial: ## Build AMI for Ubuntu 16.04 ("Xenial") LTS
 	@cd xenial && packer validate template.json
 	@cd xenial && packer build template.json
 
+.PHONY: bionic
+bionic: ## Build AMI for Ubuntu 18.04 ("Bionic") LTS
+	@cd bionic && packer validate template.json
+	@cd bionic && packer build template.json
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
