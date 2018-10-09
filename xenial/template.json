@@ -51,7 +51,6 @@
 		"ami_name": "ubuntu-xenial-16.04-amd64-zfs-server-{{ user `buildtime` }}",
 		"ami_description": "Ubuntu Xenial (16.04) with ZFS Root Filesystem",
 		"ami_virtualization_type": "hvm",
-		"ena_support": true,
 		"ami_regions": [
 			"ap-south-1",
 			"ap-northeast-1",
@@ -61,6 +60,7 @@
 			"ca-central-1",
 			"eu-west-1",
 			"eu-west-2",
+			"eu-west-3",
 			"eu-central-1",
 			"sa-east-1",
 			"us-east-1",
@@ -94,6 +94,7 @@
 			"type": "shell",
 			"start_retry_timeout": "5m",
 			"script": "scripts/surrogate-bootstrap.sh",
+			"execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
 			"skip_clean": true
 		}
 	]
