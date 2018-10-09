@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -ex
+set -o errexit
+set -o pipefail
+set -o xtrace
 
 # Update apt and install required packages
 DEBIAN_FRONTEND=noninteractive sudo apt-get update
