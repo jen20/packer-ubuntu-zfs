@@ -7,13 +7,14 @@ This repository contains [Packer][packerio] templates for building Amazon Machin
 
 The template is easily modified for Debian and other recent Ubuntu distributions, however.
 
-A detailed description of how the template works is available on the [operator-error.com][oe] blog, in the post [Building ZFS Root Ubuntu AMIs with Packer][oepost]. Note that the package set needed for ZFS from Ubuntu 18.04 onwards is different.
+You can read about how this template works on the [operator-error.com][oe] blog. Some relevant posts:
+
+- [Building ZFS Root Ubuntu AMIs with Packer][oepost1]
+- [Ubuntu 18.04 with Root ZFS on AWS][oepost2]
 
 ## Running a build
 
-**Note that you'll need Packer v0.12.3 or above in order to build these templates.**
-
-Use the `bionic` or `xenial` targets of the Makefile in root of the repository to build an AMI in `us-west-2`, and copy it to all regions.
+Use the `bionic` or `xenial` targets of the Makefile in root of the repository to build an AMI in `us-west-2`, and copy it to all regions. Use a recent version of Packer - only the latest available at the time of last editing has been tested (currently: version 1.3.1).
 
 The following environment variables must be set in order for the build to succeed:
 
@@ -29,7 +30,8 @@ Thanks to:
 - [Zachary Schneider][zachs] for reviewing the template and blog post prior to publication.
 
 [oe]: https://operator-error.com
-[oepost]: https://operator-error.com/building-zfs-root-ubuntu-amis-with-packer
+[oepost1]: https://operator-error.com/building-zfs-root-ubuntu-amis-with-packer
+[oepost2]: https://operator-error.com/2018/10/09/ubuntu-18-04-with-root-zfs-on-aws
 [scotte]: https://www.scotte.org
 [scottepost]: https://www.scotte.org/2016/12/ZFS-root-filesystem-on-AWS
 [seanc]: https://twitter.com/seanchittenden
