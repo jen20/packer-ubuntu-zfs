@@ -23,7 +23,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
 locale-gen --purge "en_US.UTF-8"
 
 cat << EOF > /etc/default/locale
-LANG="en_US.UTF-8
+LANG="en_US.UTF-8"
 LANGUAGE="en_US:en"
 EOF
 
