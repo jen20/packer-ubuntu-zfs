@@ -21,7 +21,11 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 # Set the locale to en_US.UTF-8
 locale-gen --purge "en_US.UTF-8"
-echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
+
+cat << EOF > /etc/default/locale
+LANG="en_US.UTF-8
+LANGUAGE="en_US:en"
+EOF
 
 # Install OpenSSH
 apt-get install -y --no-install-recommends openssh-server
@@ -34,12 +38,13 @@ grub-install /dev/xvdf
 
 # Configure and update GRUB
 mkdir -p /etc/default/grub.d
-{
-	echo 'GRUB_RECORDFAIL_TIMEOUT=0'
-	echo 'GRUB_TIMEOUT=0'
-	echo 'GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0 ip=dhcp tsc=reliable net.ifnames=0"'
-	echo 'GRUB_TERMINAL=console'
-} > /etc/default/grub.d/50-aws-settings.cfg
+cat << EOF > /etc/default/grub.d/50-aws-settings.cfg
+GRUB_RECORDFAIL_TIMEOUT=0
+GRUB_TIMEOUT=0
+GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0 ip=dhcp tsc=reliable net.ifnames=0"
+GRUB_TERMINAL=console
+EOF
+
 update-grub
 
 # Set options for the default interface
