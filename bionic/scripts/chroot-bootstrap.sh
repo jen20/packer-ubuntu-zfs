@@ -11,8 +11,10 @@ apt-get update
 echo 'grub-pc grub-pc/install_devices_empty select true' | debconf-set-selections
 echo 'grub-pc grub-pc/install_devices select' | debconf-set-selections
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Install various packages needed for a booting system
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+apt-get install -y \
 	linux-aws \
 	grub-pc \
 	zfsutils-linux \
@@ -56,5 +58,7 @@ network:
       dhcp4: true
 EOF
 
-# Install standard packages
-DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-standard cloud-init
+# Install standard packages (python is for ebsnvme-id)
+apt-get install -y ubuntu-standard \
+	cloud-init \
+	python

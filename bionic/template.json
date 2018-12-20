@@ -87,6 +87,16 @@
 		},
 		{
 			"type": "file",
+			"source": "files/ebsnvme-id",
+			"destination": "/tmp/ebsnvme-id"
+		},
+		{
+			"type": "file",
+			"source": "files/70-ec2-nvme-devices.rules",
+			"destination": "/tmp/70-ec2-nvme-devices.rules"
+		},
+		{
+			"type": "file",
 			"source": "scripts/chroot-bootstrap.sh",
 			"destination": "/tmp/chroot-bootstrap.sh"
 		},
