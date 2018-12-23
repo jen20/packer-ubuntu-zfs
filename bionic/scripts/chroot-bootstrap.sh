@@ -21,12 +21,9 @@ apt-get install -y \
 	zfs-initramfs \
 	gdisk
 
-# Set the locale to en_US.UTF-8
-locale-gen --purge "en_US.UTF-8"
-
 cat << EOF > /etc/default/locale
-LANG="en_US.UTF-8"
-LANGUAGE="en_US:en"
+LANG="C.UTF-8"
+LC_CTYPE="C.UTF-8"
 EOF
 
 # Install OpenSSH
