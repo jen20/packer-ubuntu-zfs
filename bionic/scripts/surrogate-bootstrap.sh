@@ -105,6 +105,16 @@ cp /tmp/chroot-bootstrap.sh /mnt/tmp/chroot-bootstrap.sh
 chroot /mnt /tmp/chroot-bootstrap.sh
 rm -f /mnt/tmp/chroot-bootstrap.sh
 
+# Copy the nvme identification script into /sbin inside the chroot
+mkdir -p /mnt/sbin
+cp /tmp/ebsnvme-id /mnt/sbin/ebsnvme-id
+chmod +x /mnt/sbin/ebsnvme-id
+
+# Copy the udev rules for identifying nvme devices into the chroot
+mkdir -p /mnt/etc/udev/rules.d
+cp /tmp/70-ec2-nvme-devices.rules \
+	/mnt/etc/udev/rules.d/70-ec2-nvme-devices.rules
+
 # Remove temporary sources list - CloudInit regenerates it
 rm -f /mnt/etc/apt/sources.list
 

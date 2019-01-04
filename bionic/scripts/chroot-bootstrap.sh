@@ -11,20 +11,19 @@ apt-get update
 echo 'grub-pc grub-pc/install_devices_empty select true' | debconf-set-selections
 echo 'grub-pc grub-pc/install_devices select' | debconf-set-selections
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Install various packages needed for a booting system
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+apt-get install -y \
 	linux-aws \
 	grub-pc \
 	zfsutils-linux \
 	zfs-initramfs \
 	gdisk
 
-# Set the locale to en_US.UTF-8
-locale-gen --purge "en_US.UTF-8"
-
 cat << EOF > /etc/default/locale
-LANG="en_US.UTF-8"
-LANGUAGE="en_US:en"
+LANG="C.UTF-8"
+LC_CTYPE="C.UTF-8"
 EOF
 
 # Install OpenSSH
@@ -56,5 +55,7 @@ network:
       dhcp4: true
 EOF
 
-# Install standard packages
-DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-standard cloud-init
+# Install standard packages (python is for ebsnvme-id)
+apt-get install -y ubuntu-standard \
+	cloud-init \
+	python

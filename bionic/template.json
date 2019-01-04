@@ -11,9 +11,6 @@
 		"secret_key": "{{ user `aws_secret_access_key` }}",
 		"region": "{{user `region`}}",
 
-		"spot_price": "auto",
-		"spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
-
 		"ssh_pty": true,
 		"instance_type": "m4.large",
 		"associate_public_ip_address": true,
@@ -29,6 +26,8 @@
 			"owners": ["099720109477"],
 			"most_recent": true
 		},
+
+		"ena_support": "true",
 
 		"launch_block_device_mappings": [
 			{
@@ -82,8 +81,18 @@
 	"provisioners": [
 		{
 			"type": "file",
-			"source": "scripts/sources-us-west-2.list",
+			"source": "files/sources-us-west-2.list",
 			"destination": "/tmp/sources.list"
+		},
+		{
+			"type": "file",
+			"source": "files/ebsnvme-id",
+			"destination": "/tmp/ebsnvme-id"
+		},
+		{
+			"type": "file",
+			"source": "files/70-ec2-nvme-devices.rules",
+			"destination": "/tmp/70-ec2-nvme-devices.rules"
 		},
 		{
 			"type": "file",
