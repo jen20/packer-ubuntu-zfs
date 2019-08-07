@@ -9,9 +9,9 @@ export DEBIAN_FRONTEND=noninteractive
 # Update apt and install required packages
 apt-get update
 apt-get install -y \
+	gdisk \
 	zfsutils-linux \
-	debootstrap \
-	gdisk
+	debootstrap
 
 # Partition the new root EBS volume
 sgdisk -Zg -n1:0:4095 -t1:EF02 -c1:GRUB -n2:0:0 -t2:BF01 -c2:ZFS /dev/xvdf
