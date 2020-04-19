@@ -10,6 +10,10 @@ bionic: ## Build AMI for Ubuntu 18.04 ("Bionic") LTS
 	@cd bionic && packer validate template.json
 	@cd bionic && packer build template.json
 
+.PHONY: focal
+focal: ## Build AMI for Ubuntu 20.04 ("Focal") LTS
+	@cd focal && packer build tempalte.pkr.hcl
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
