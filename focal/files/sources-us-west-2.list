@@ -1,0 +1,6 @@
+deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ focal main restricted
+deb-src http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ focal main restricted
+
+deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+deb-src http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+
