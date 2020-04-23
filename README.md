@@ -11,8 +11,10 @@ The template is easily modified for Debian and other Ubuntu distributions.
 
 You can read about how this template works on the [jen20.dev][oe] blog. Some relevant posts:
 
-- [Building ZFS Root Ubuntu AMIs with Packer][oepost1]
+- [Ubuntu 20.04 with Root ZFS on AWS][oepost3]
 - [Ubuntu 18.04 with Root ZFS on AWS][oepost2]
+- [Building ZFS Root Ubuntu AMIs with Packer][oepost1]
+
 
 ## Running a build (Focal)
 
@@ -46,6 +48,7 @@ Thanks to:
 [oe]: https://operator-error.com
 [oepost1]: https://jen20.dev/post/building-zfs-root-ubuntu-amis-with-packer/ 
 [oepost2]: https://jen20.dev/post/ubuntu-18.04-with-root-zfs-on-aws/
+[oepost3]: https://jen20.dev/post/ubuntu-20.04-with-root-zfs-in-aws/
 [scotte]: https://www.scotte.org
 [scottepost]: https://www.scotte.org/2016/12/ZFS-root-filesystem-on-AWS
 [seanc]: https://twitter.com/seanchittenden
