@@ -12,7 +12,7 @@ bionic: ## Build AMI for Ubuntu 18.04 ("Bionic") LTS
 
 .PHONY: focal
 focal: ## Build AMI for Ubuntu 20.04 ("Focal") LTS
-	@cd focal && packer build tempalte.pkr.hcl
+	@cd focal && packer build template.pkr.hcl
 
 .PHONY: help
 help: ## Display this information. Default target.
