@@ -1,6 +1,6 @@
 source "amazon-ebssurrogate" "source" {
 	source_ami_filter {
-		filters {
+		filters = {
 			virtualization-type = "hvm"
 			name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
 			root-device-type = "ebs"
@@ -22,10 +22,10 @@ source "amazon-ebssurrogate" "source" {
 		volume_type = "gp2"
 	}
 
-	run_tags {
+	run_tags = {
 		Name = "Packer Builder - ZFS Root Ubuntu"
 	}
-	run_volume_tags {
+	run_volume_tags = {
 		Name = "Packer Builder - ZFS Root Ubuntu"
 	}
 
@@ -46,7 +46,7 @@ source "amazon-ebssurrogate" "source" {
 		volume_type = "gp2"
 	}
 
-	tags {
+	tags = {
 		Name = "Ubuntu Focal (20.04) with ZFS Root Filesystem"
 		BuildTime = timestamp()
 	}
