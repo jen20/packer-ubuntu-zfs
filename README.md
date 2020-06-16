@@ -15,6 +15,18 @@ You can read about how this template works on the [jen20.dev][oe] blog. Some rel
 - [Ubuntu 18.04 with Root ZFS on AWS][oepost2]
 - [Building ZFS Root Ubuntu AMIs with Packer][oepost1]
 
+## Differences between versions
+
+As well as installing different versions of the Ubuntu distribution, the templates in this repository have
+evolved at different rates. The `focal` template is the most complete, and includes the following changes
+compared to other versions:
+
+- Support for AWS NVME device rules
+- Support for expanding the ZFS root filesystem via Cloud-Init
+- Clearing of the apt-cache as part of the build
+
+These changes could likely be backported to other distributions, but they are mostly there for information
+only since I personally only use (and test) the latest LTS distribution for new images.
 
 ## Running a build (Focal)
 
@@ -24,13 +36,12 @@ also possible to change the region in which the AMI is built directly, though ed
 necessary if the initial packages must be obtained from a region other than `us-west-2`.
 
 AWS credentials are sourced from the environment using the standard AWS chain exposed by Packer. The template has only
-been tested using v1.5.5 of Packer - the latest available at the time of writing.
+been tested using v1.6.0 of Packer - the latest available at the time of writing.
 
 ## Running a build (Bionic and Xenial)
 
 Use the `bionic` or `xenial` targets of the Makefile in root of the repository to build an AMI in `us-west-2`, and copy
-it to all regions. Use a recent version of Packer - only the latest available at the time of last editing has been
-tested (currently: version 1.3.1).
+it to all regions. Use a recent version of Packer - version 1.3.1 has been tested.
 
 The following environment variables must be set in order for the build to succeed:
 
