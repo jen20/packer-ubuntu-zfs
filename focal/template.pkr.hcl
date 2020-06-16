@@ -34,7 +34,7 @@ source "amazon-ebssurrogate" "source" {
 	ssh_username = "ubuntu"
 	ssh_timeout = "5m"
 
-	ami_name = "ubuntu-focal-20.04-amd64-zfs-server"
+	ami_name = "ubuntu-focal-20.04-amd64-zfs-server-${formatdate("YYYY-MM-DD-hhmm", timestamp())}"
 	ami_description = "Ubuntu Focal (20.04) with ZFS Root Filesystem"
 	ami_virtualization_type = "hvm"
 	ami_regions = []
@@ -48,7 +48,6 @@ source "amazon-ebssurrogate" "source" {
 
 	tags = {
 		Name = "Ubuntu Focal (20.04) with ZFS Root Filesystem"
-		BuildTime = timestamp()
 	}
 }
 
