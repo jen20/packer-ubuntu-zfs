@@ -121,6 +121,11 @@ mkdir -p /mnt/etc/udev/rules.d
 cp /tmp/70-ec2-nvme-devices.rules \
 	/mnt/etc/udev/rules.d/70-ec2-nvme-devices.rules
 
+# Copy the ZFS-compatible growpart configuration for cloud-init into the chroot
+mkdir -p /mnt/etc/cloud/cloud.cfg.d
+cp /tmp/zfs-growpart-root.cfg \
+    /mnt/etc/cloud/cloud.cfg.d/zfs-growpart-root.cfg
+
 # Remove temporary sources list - CloudInit regenerates it
 rm -f /mnt/etc/apt/sources.list
 

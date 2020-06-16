@@ -73,6 +73,11 @@ build {
 	}
 
 	provisioner "file" {
+		source = "files/zfs-growpart-root.cfg"
+		destination = "/tmp/zfs-growpart-root.cfg"
+	}
+
+	provisioner "file" {
 		source = "scripts/chroot-bootstrap.sh"
 		destination = "/tmp/chroot-bootstrap.sh"
 	}
