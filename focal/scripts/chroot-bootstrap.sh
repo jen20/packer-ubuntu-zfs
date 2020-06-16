@@ -60,3 +60,6 @@ EOF
 # Install standard packages
 apt-get install -y ubuntu-standard \
 	cloud-init
+
+# Clear apt caches
+apt-get clean
