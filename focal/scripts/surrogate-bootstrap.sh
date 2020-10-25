@@ -17,10 +17,42 @@ apt-get update
 apt-get install -y \
 	gdisk \
 	zfsutils-linux \
-	debootstrap
+	debootstrap \
+	nvme-cli
+
+# NVMe EBS launch device mappings (symlinks): /dev/nvme*n* to /dev/xvd*
+declare -A blkdev_mappings
+for blkdev in $(nvme list | awk '/^\/dev/ { print $1 }'); do  # /dev/nvme*n*
+    # Mapping info from disk headers
+    header=$(nvme id-ctrl --raw-binary "${blkdev}" | cut -c3073-3104 | tr -s ' ' | sed 's/ $//g' | sed 's!/dev/!!')
+    mapping="/dev/${header%%[0-9]}"  # normalize sda1 => sda
+
+    # Create /dev/xvd* device symlink
+    if [[ ! -z "$mapping" ]] && [[ -b "${blkdev}" ]] && [[ ! -L "${mapping}" ]]; then
+        ln -s "$blkdev" "$mapping"
+
+        blkdev_mappings["$blkdev"]="$mapping"
+    fi
+done
 
 # Partition the new root EBS volume
 sgdisk -Zg -n1:0:4095 -t1:EF02 -c1:GRUB -n2:0:0 -t2:BF01 -c2:ZFS /dev/xvdf
+
+# NVMe EBS launch device partition mappings (symlinks): /dev/nvme*n*p* to /dev/xvd*[0-9]+
+declare -A partdev_mappings
+for blkdev in "${!blkdev_mappings[@]}"; do  # /dev/nvme*n*
+    mapping="${blkdev_mappings[$blkdev]}"
+
+    # Create /dev/xvd*[0-9]+ partition device symlink
+    for partdev in "${blkdev}"p*; do
+        partnum=${partdev##*p}
+        if [[ ! -L "${mapping}${partnum}" ]]; then
+            ln -s "${blkdev}p${partnum}" "${mapping}${partnum}"
+
+            partdev_mappings["${blkdev}p${partnum}"]="${mapping}${partnum}"
+        fi
+    done
+done
 
 # Create zpool and filesystems on the new EBS volume
 zpool create \
@@ -140,3 +172,10 @@ umount -l /mnt/sys
 
 # Export the zpool
 zpool export rpool
+
+# Reset device mappings
+for dev_link in "${blkdev_mappings[@]}" "${partdev_mappings[@]}"; do
+    if [[ -L "$dev_link" ]]; then
+        rm -f "$dev_link"
+    fi
+done
