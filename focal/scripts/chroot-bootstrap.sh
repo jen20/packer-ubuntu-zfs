@@ -59,7 +59,16 @@ EOF
 
 # Install standard packages
 apt-get install -y ubuntu-standard \
-	cloud-init
+	cloud-init \
+	ubuntu-server \
+	acpid \
+	ec2-hibinit-agent \
+	ec2-instance-connect \
+	hibagent \
+	krb5-locales \
+	ncurses-term \
+	ssh-import-id \
+	xauth
 
 # Clear apt caches
 apt-get clean
